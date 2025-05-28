@@ -34,7 +34,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node backend/server.cjs"
   },
   "type": "module"
 }
