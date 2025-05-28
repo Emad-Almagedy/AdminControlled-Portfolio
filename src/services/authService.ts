@@ -5,7 +5,7 @@ interface User {
   role: string;
 }
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://admincontrolled-portfolio.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_BASE_URL ? import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '') : 'https://admincontrolled-portfolio.onrender.com/api';
 
 let currentUser: User | null = null;
 
