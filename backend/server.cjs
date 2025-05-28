@@ -19,6 +19,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api';
+
 
 // Connect to MongoDB
 connectDB();

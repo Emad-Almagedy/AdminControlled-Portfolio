@@ -17,19 +17,20 @@ export const signIn = async (email: string, password: string): Promise<User> => 
   });
 
   if (!res.ok) {
-    throw new Error('Invalid login credentials');
+    const err = await res.text();
+    throw new Error(`Login failed: ${err}`);
   }
 
   const data = await res.json();
   const token = data.token;
+
   localStorage.setItem('authToken', token);
 
-  // Decode token or fetch user info if needed; here we mock user info
   currentUser = {
-    id: 'admin-id',
-    name: 'Admin User',
-    email,
-    role: 'admin',
+    id: data.user.id,
+    name: data.user.name,
+    email: data.user.email,
+    role: data.user.role,
   };
 
   return currentUser;
@@ -38,7 +39,6 @@ export const signIn = async (email: string, password: string): Promise<User> => 
 export const signOut = async (): Promise<void> => {
   currentUser = null;
   localStorage.removeItem('authToken');
-  return;
 };
 
 export const getCurrentUser = async (): Promise<User | null> => {
