@@ -29,7 +29,6 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
 // Authentication middleware
@@ -47,8 +46,8 @@ const authenticate = (req, res, next) => {
   }
 };
 
-// Login endpoint
-app.post('/login', async (req, res) => {
+// ✅ Login endpoint (now under /api)
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -65,12 +64,12 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Protected route test
+// Test protected route
 app.get('/admin', authenticate, (req, res) => {
   return res.json({ message: 'Welcome to admin area', user: req.user });
 });
 
-// Public GET endpoint for About (no authentication)
+// Public GET endpoint for About
 app.get('/api/about', async (req, res) => {
   try {
     const aboutData = await About.findOne();
@@ -81,7 +80,7 @@ app.get('/api/about', async (req, res) => {
   }
 });
 
-// Public POST endpoint for Messages (no authentication)
+// Public POST endpoint for Messages
 app.post('/api/messages', async (req, res) => {
   try {
     const messageData = {
@@ -96,7 +95,7 @@ app.post('/api/messages', async (req, res) => {
   }
 });
 
-// Generic CRUD and count endpoints for any model
+// Generic CRUD
 const createCrudEndpoints = (path, Model, options = {}) => {
   const { publicGet = false } = options;
 
@@ -174,8 +173,9 @@ createCrudEndpoints('education', Education, { publicGet: true });
 createCrudEndpoints('testimonials', Testimonial, { publicGet: true });
 createCrudEndpoints('certificates', Certificate, { publicGet: true });
 createCrudEndpoints('messages', Message);
-  
-// PATCH endpoint to update read status of a message
+createCrudEndpoints('about', About);
+
+// PATCH message read status
 app.patch('/api/messages/:id/read', authenticate, async (req, res) => {
   try {
     const { read } = req.body;
@@ -194,9 +194,7 @@ app.patch('/api/messages/:id/read', authenticate, async (req, res) => {
   }
 });
 
-createCrudEndpoints('about', About);
-
-// Create user endpoint
+// ✅ User create (only one)
 app.post('/api/users', authenticate, async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
@@ -216,26 +214,8 @@ app.post('/api/users', authenticate, async (req, res) => {
     res.status(400).json({ message: 'Invalid data' });
   }
 });
-app.post('/api/users', authenticate, async (req, res) => {
-  try {
-    const { username, email, password, role } = req.body;
-    if (!username || !email || !password) {
-      return res.status(400).json({ message: 'Missing required fields' });
-    }
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email already in use' });
-    }
-    const user = new User({ username, email, role });
-    await user.setPassword(password);
-    await user.save();
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ message: 'Invalid data' });
-  }
-});
 
-// Update user endpoint with password hashing
+// User update
 app.put('/api/users/:id', authenticate, async (req, res) => {
   try {
     const { password, ...updateData } = req.body;
@@ -261,6 +241,7 @@ app.put('/api/users/:id', authenticate, async (req, res) => {
 // Generic user endpoints
 createCrudEndpoints('users', User);
 
+// User count
 app.get('/api/users/count', authenticate, async (req, res) => {
   try {
     const count = await User.countDocuments();
