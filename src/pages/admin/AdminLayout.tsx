@@ -17,7 +17,7 @@ import {
   X,
   Home,
   Sun,
-  Moon,
+  Moon
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -27,7 +27,7 @@ const AdminLayout = () => {
   const location = useLocation();
   const { logout } = useAuth();
   const { theme } = useTheme();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin' },
@@ -48,16 +48,20 @@ const AdminLayout = () => {
     navigate('/login');
   };
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-
-      {/* Mobile Sidebar Toggle Button */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      {/* Mobile Sidebar Toggle and Theme Toggle */}
+      <div className="md:hidden fixed top-4 right-12 z-50 flex items-center space-x-2">
+        <button
+          onClick={() => {
+            const newTheme = theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.classList.toggle('dark', newTheme === 'dark');
+          }}
+          className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
+        </button>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
@@ -72,23 +76,15 @@ const AdminLayout = () => {
         initial={{ x: -300 }}
         animate={{ x: isSidebarOpen ? 0 : -300 }}
         transition={{ type: 'spring', damping: 20 }}
-        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
-          transform transition-transform md:translate-x-0 md:static md:block ${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } md:!translate-x-0`}
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+          md:translate-x-0 md:static md:block`}
       >
         <div className="h-full px-4 py-6 overflow-y-auto">
           <div className="flex items-center justify-between mb-8 px-2">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Admin Panel
             </h2>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-md"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={20} color="white" /> : <Moon size={20} />}
-            </button>
           </div>
 
           <nav className="space-y-1">
@@ -137,8 +133,8 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
-      {/* Main Content */}
-      <main className="transition-all duration-300 md:ml-64">
+      {/* Main content */}
+      <main className={`transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : ''}`}>
         <div className="p-6">
           <Outlet />
         </div>
