@@ -142,7 +142,7 @@ const AboutManager = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6 text-text-primary dark:text-text-primary-dark">
+      <div className="flex justify-between items-center  pt-16 md:pt-0 mb-6 text-text-primary dark:text-text-primary-dark">
         <h1 className="text-2xl font-bold">Manage About Section</h1>
       </div>
       <FormLayout
