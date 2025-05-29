@@ -40,14 +40,14 @@ const Dashboard = () => {
             messagesRes,
             aboutRes,
           ] = await Promise.all([
-            fetch('http://localhost:4000/api/projects/count', { headers }),
-            fetch('http://localhost:4000/api/techstack/count', { headers }),
-            fetch('http://localhost:4000/api/experience/count', { headers }),
-            fetch('http://localhost:4000/api/education/count', { headers }),
-            fetch('http://localhost:4000/api/testimonials/count', { headers }),
-            fetch('http://localhost:4000/api/certificates/count', { headers }),
-            fetch('http://localhost:4000/api/messages/count', { headers }),
-            fetch('http://localhost:4000/api/about/count', { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/projects/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/techstack/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/experience/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/education/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/testimonials/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/certificates/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/messages/count`, { headers }),
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/about/count`, { headers }),
           ]);
 
           const projectsCount = projectsRes.ok ? (await projectsRes.json()).count : 0;
@@ -58,7 +58,7 @@ const Dashboard = () => {
           const certificatesCount = certificatesRes.ok ? (await certificatesRes.json()).count : 0;
           const messagesCount = messagesRes.ok ? (await messagesRes.json()).count : 0;
           // Replace about count with user count
-          const userRes = await fetch('http://localhost:4000/api/users/count', { headers });
+          const userRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/count`, { headers });
           const userCount = userRes.ok ? (await userRes.json()).count : 0;
 
           setCounts({
