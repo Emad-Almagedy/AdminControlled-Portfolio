@@ -49,7 +49,7 @@ const TechStackManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/techstack', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/techstack`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -91,7 +91,7 @@ const TechStackManager = () => {
     if (!window.confirm('Are you sure you want to delete this tech stack item?')) return;
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/techstack/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/techstack/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -114,8 +114,8 @@ const TechStackManager = () => {
       const token = localStorage.getItem('authToken');
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing
-        ? `http://localhost:4000/api/techstack/${editId}`
-        : 'http://localhost:4000/api/techstack';
+        ? `${import.meta.env.VITE_API_BASE_URL}/techstack/${editId}`
+        : `${import.meta.env.VITE_API_BASE_URL}/techstack`;
       const res = await fetch(url, {
         method,
         headers: {

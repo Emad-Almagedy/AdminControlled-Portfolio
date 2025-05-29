@@ -36,7 +36,7 @@ const MessagesManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/messages', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/messages`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -55,7 +55,7 @@ const MessagesManager = () => {
   const toggleRead = async (id: string, currentRead: boolean) => {
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/messages/${id}/read`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/messages/${id}/read`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const MessagesManager = () => {
     if (!window.confirm('Are you sure you want to delete this message?')) return;
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/messages/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/messages/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -65,7 +65,7 @@ const SettingsManager = () => {
     setIsUsersLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/users', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -92,7 +92,7 @@ const handleAddUser = async (e: React.FormEvent) => {
     setIsUsersLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/users', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const handleAddUser = async (e: React.FormEvent) => {
     setIsUsersLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/users/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ const handleAddUser = async (e: React.FormEvent) => {
     setIsUsersLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/users/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

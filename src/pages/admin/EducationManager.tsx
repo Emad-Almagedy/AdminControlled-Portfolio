@@ -53,7 +53,7 @@ const EducationManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/education', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/education`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -93,7 +93,7 @@ const EducationManager = () => {
     if (!window.confirm('Are you sure you want to delete this education entry?')) return;
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/education/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/education/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -116,8 +116,8 @@ const EducationManager = () => {
       const token = localStorage.getItem('authToken');
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing
-        ? `http://localhost:4000/api/education/${editId}`
-        : 'http://localhost:4000/api/education';
+        ? `${import.meta.env.VITE_API_BASE_URL}/education/${editId}`
+        : `${import.meta.env.VITE_API_BASE_URL}/education`;
       const res = await fetch(url, {
         method,
         headers: {

@@ -51,7 +51,7 @@ const TestimonialsManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/testimonials', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/testimonials`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -90,7 +90,7 @@ const TestimonialsManager = () => {
     if (!window.confirm('Are you sure you want to delete this testimonial?')) return;
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/testimonials/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/testimonials/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -113,8 +113,8 @@ const TestimonialsManager = () => {
       const token = localStorage.getItem('authToken');
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing
-        ? `http://localhost:4000/api/testimonials/${editId}`
-        : 'http://localhost:4000/api/testimonials';
+        ? `${import.meta.env.VITE_API_BASE_URL}/testimonials/${editId}`
+        : `${import.meta.env.VITE_API_BASE_URL}/testimonials`;
       const res = await fetch(url, {
         method,
         headers: {

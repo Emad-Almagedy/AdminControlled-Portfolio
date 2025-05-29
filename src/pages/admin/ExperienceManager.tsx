@@ -55,7 +55,7 @@ const ExperienceManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/experience', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/experience`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -103,7 +103,7 @@ const ExperienceManager = () => {
     if (!window.confirm('Are you sure you want to delete this experience?')) return;
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/experience/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/experience/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -126,8 +126,8 @@ const ExperienceManager = () => {
       const token = localStorage.getItem('authToken');
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing
-        ? `http://localhost:4000/api/experience/${editId}`
-        : 'http://localhost:4000/api/experience';
+        ? `${import.meta.env.VITE_API_BASE_URL}/experience/${editId}`
+        : `${import.meta.env.VITE_API_BASE_URL}/experience`;
       const res = await fetch(url, {
         method,
         headers: {

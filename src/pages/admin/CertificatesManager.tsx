@@ -48,7 +48,7 @@ const CertificatesManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/certificates', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/certificates`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -87,7 +87,7 @@ const CertificatesManager = () => {
     if (!window.confirm('Are you sure you want to delete this certificate?')) return;
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/certificates/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/certificates/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -110,8 +110,8 @@ const CertificatesManager = () => {
       const token = localStorage.getItem('authToken');
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing
-        ? `http://localhost:4000/api/certificates/${editId}`
-        : 'http://localhost:4000/api/certificates';
+        ? `${import.meta.env.VITE_API_BASE_URL}/certificates/${editId}`
+        : `${import.meta.env.VITE_API_BASE_URL}/certificates`;
       const res = await fetch(url, {
         method,
         headers: {

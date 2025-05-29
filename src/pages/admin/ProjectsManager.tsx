@@ -57,7 +57,7 @@ const ProjectsManager = () => {
     setError(null);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/projects', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch projects');
@@ -91,7 +91,7 @@ const ProjectsManager = () => {
     try {
       const token = localStorage.getItem('authToken');
       const method = isEditing ? 'PUT' : 'POST';
-      const url = isEditing ? `http://localhost:4000/api/projects/${editId}` : 'http://localhost:4000/api/projects';
+      const url = isEditing ? `${import.meta.env.VITE_API_BASE_URL}/projects/${editId}` : `${import.meta.env.VITE_API_BASE_URL}/projects`;
       const res = await fetch(url, {
         method,
         headers: {
@@ -142,7 +142,7 @@ const ProjectsManager = () => {
     setError(null);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/projects/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/projects/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
