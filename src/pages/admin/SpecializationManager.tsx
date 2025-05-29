@@ -137,6 +137,7 @@ const SpecializationManager = () => {
         onSubmit={handleSubmit}
         isLoading={isLoading}
         submitLabel={isEditing ? 'Update Specialization' : 'Add Specialization'}
+        className="max-w-xl mx-auto"
       >
         <div>
           <label className="block mb-1 font-medium text-text-primary dark:text-text-primary-dark">Title</label>
@@ -145,7 +146,6 @@ const SpecializationManager = () => {
             value={formData.title || ''}
             onChange={handleChange}
             required
-            className=""
           />
         </div>
         <div>
@@ -166,7 +166,6 @@ const SpecializationManager = () => {
             value={formData.icon || ''}
             onChange={handleChange}
             required
-            className=""
           />
         </div>
       </FormLayout>
