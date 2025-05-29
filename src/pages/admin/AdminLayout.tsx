@@ -71,9 +71,9 @@ const AdminLayout = () => {
           animate={{ x: isSidebarOpen ? 0 : -300 }}
           transition={{ type: 'spring', damping: 20 }}
           className={`fixed md:static top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
-            transform transition-transform md:translate-x-0 ${
+            transform transition-transform md:block ${
               isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-            } md:block`}
+            } md:translate-x-0`}
         >
           <div className="h-full px-4 py-6 overflow-y-auto">
             <div className="flex items-center justify-between mb-8 px-2">
