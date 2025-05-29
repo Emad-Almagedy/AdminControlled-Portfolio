@@ -66,12 +66,12 @@ const AdminLayout = () => {
 
         {/* Sidebar */}
         <aside
-          className={`fixed md:static top-0 left-0 z-40 w-64 min-h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
-            transform transition-transform duration-500 ease-in-out md:block ${
+          className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
+            transform transition-transform duration-500 ease-in-out overflow-y-auto ${
               isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } md:translate-x-0`}
         >
-          <div className="h-full px-4 py-6 overflow-y-auto">
+          <div className="h-full px-4 py-6">
             <div className="flex items-center justify-between mb-8 px-2">
               <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Admin Panel
@@ -126,7 +126,7 @@ const AdminLayout = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-grow p-6 min-h-screen">
+        <main className="flex-grow p-6 min-h-screen md:ml-64">
           <Outlet />
         </main>
 
@@ -146,3 +146,4 @@ const AdminLayout = () => {
 };
 
 export default AdminLayout;
+</create_file>
