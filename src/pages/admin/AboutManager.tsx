@@ -64,7 +64,7 @@ const AboutManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:4000/api/about', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/about`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -121,7 +121,7 @@ const AboutManager = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('authToken');
-      const res = await fetch(`http://localhost:4000/api/about/${aboutId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/about/${aboutId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
