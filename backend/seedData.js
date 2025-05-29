@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { connectDB, Project, TechStack, Experience, Education, Testimonial, Certificate, Message, About, User } from './db.cjs';
+import { connectDB, Project, TechStack, Experience, Education, Testimonial, Certificate, Message, About, User, Specialization } from './db.cjs';
 
 const mockProjects = [
   {
