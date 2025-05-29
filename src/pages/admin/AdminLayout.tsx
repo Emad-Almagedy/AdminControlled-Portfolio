@@ -49,36 +49,39 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Mobile Sidebar Toggle and Theme Toggle */}
-      <div className="md:hidden fixed top-4 right-12 z-50 flex items-center space-x-2">
-        <button
-          onClick={() => {
-            const newTheme = theme === 'dark' ? 'light' : 'dark';
-            document.documentElement.classList.toggle('dark', newTheme === 'dark');
-          }}
-          className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
-        </button>
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
-          aria-label="Toggle sidebar"
-        >
-          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+  <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    {/* Mobile Toggle Buttons */}
+    <div className="md:hidden fixed top-4 right-12 z-50 flex items-center space-x-2">
+      <button
+        onClick={() => {
+          const newTheme = theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.classList.toggle('dark', newTheme === 'dark');
+        }}
+        className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+        aria-label="Toggle theme"
+      >
+        {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
+      </button>
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+        aria-label="Toggle sidebar"
+      >
+        {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+    </div>
 
+    {/* Layout Container: Sidebar + Main */}
+    <div className="flex">
       {/* Sidebar */}
       <motion.aside
         initial={{ x: -300 }}
         animate={{ x: isSidebarOpen ? 0 : -300 }}
         transition={{ type: 'spring', damping: 20 }}
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
+        className={`fixed md:static z-40 h-screen w-64 flex-shrink-0 transition-transform border-r border-gray-200 dark:border-gray-700 
+          bg-white dark:bg-gray-800 
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-          md:translate-x-0 md:static md:block`}
+          md:translate-x-0 md:block`}
       >
         <div className="h-full px-4 py-6 overflow-y-auto">
           <div className="flex items-center justify-between mb-8 px-2">
@@ -86,16 +89,13 @@ const AdminLayout = () => {
               Admin Panel
             </h2>
           </div>
-
           <nav className="space-y-1">
             {menuItems.map((item) => (
               <motion.button
                 key={item.path}
                 onClick={() => {
                   navigate(item.path);
-                  if (window.innerWidth < 768) {
-                    setIsSidebarOpen(false);
-                  }
+                  if (window.innerWidth < 768) setIsSidebarOpen(false);
                 }}
                 className={`flex items-center w-full px-4 py-3 text-base rounded-lg transition-all duration-200 ${
                   location.pathname === item.path
@@ -133,24 +133,26 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
-      {/* Main content */}
-      <main className={`transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : ''}`}>
+      {/* Main Content */}
+      <main className="flex-1 min-h-screen ml-0 md:ml-0 transition-all duration-300">
         <div className="p-6">
           <Outlet />
         </div>
       </main>
-
-      {/* Background Pattern */}
-      <div
-        className="fixed inset-0 pointer-events-none opacity-5"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='${
-            theme === 'dark' ? '%23ffffff' : '%23000000'
-          }' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      ></div>
     </div>
-  );
+
+    {/* Background Pattern */}
+    <div
+      className="fixed inset-0 pointer-events-none opacity-5"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='${
+          theme === 'dark' ? '%23ffffff' : '%23000000'
+        }' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+      }}
+    ></div>
+  </div>
+);
+
 };
 
 export default AdminLayout;
