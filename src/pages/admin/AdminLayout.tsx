@@ -15,18 +15,19 @@ import {
   LogOut,
   Menu,
   X,
-  Home
+  Home,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import { Sun, Moon } from 'lucide-react';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // for mobile
+  const { theme, toggleTheme } = useTheme(); // assumes a working toggleTheme
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin' },
@@ -49,20 +50,28 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
-      {/* Sidebar - Always visible on desktop, toggleable on mobile */}
+      {/* Sidebar */}
       <motion.aside
         initial={{ x: -300 }}
         animate={{ x: isSidebarOpen ? 0 : -300 }}
-        transition={{ type: "spring", damping: 20 }}
-        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300
-          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-          md:translate-x-0 md:static`}
-            >
+        transition={{ type: 'spring', damping: 20 }}
+        className={`fixed md:static top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
+      >
         <div className="h-full px-4 py-6 overflow-y-auto">
-          <div className="flex items-center justify-between mb-8 px-2">
+          <div className="flex items-center justify-between mb-6 px-2">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Admin Panel
             </h2>
+
+            {/* Theme Toggle - Desktop Only */}
+            <button
+              onClick={toggleTheme}
+              className="hidden md:flex p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
 
           <nav className="space-y-1">
@@ -109,41 +118,31 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
-      {/* Mobile theme toggle and sidebar toggle */}
-      <div className="md:hidden fixed top-4 right-4 z-50 flex items-center space-x-2">
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
-        </button>
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
-          aria-label="Toggle sidebar"
-        >
-          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Main Content */}
-      <main className="flex-1 min-h-screen ml-0 md:ml-0 transition-all duration-300 relative">
-        {/* Desktop Theme Toggle */}
-        <div className="hidden md:flex absolute top-6 right-6 z-10">
+      {/* Content Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Mobile Top Bar */}
+        <div className="md:hidden flex justify-end items-center p-4 space-x-2">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+            className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
           </button>
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow"
+            aria-label="Toggle sidebar"
+          >
+            {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        <div className="p-6">
+        {/* Page Content */}
+        <main className="flex-1 p-6">
           <Outlet />
-        </div>
-      </main>
+        </main>
+      </div>
 
       {/* Background Pattern */}
       <div
