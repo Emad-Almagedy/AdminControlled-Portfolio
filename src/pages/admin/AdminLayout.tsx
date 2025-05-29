@@ -66,8 +66,8 @@ const AdminLayout = () => {
 
         {/* Sidebar */}
         <aside
-          className={`fixed md:static top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
-            transform transition-transform md:block ${
+          className={`fixed md:static top-0 left-0 z-40 w-64 min-h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
+            transform transition-transform duration-500 ease-in-out md:block ${
               isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } md:translate-x-0`}
         >
