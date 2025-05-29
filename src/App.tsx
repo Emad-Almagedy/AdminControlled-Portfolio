@@ -22,6 +22,7 @@ import CertificatesManager from './pages/admin/CertificatesManager';
 import TestimonialsManager from './pages/admin/TestimonialsManager';
 import MessagesManager from './pages/admin/MessagesManager';
 import SettingsManager from './pages/admin/SettingsManager';
+import SpecializationManager from './pages/admin/SpecializationManager';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                 <Route path="testimonials" element={<TestimonialsManager />} />
                 <Route path="messages" element={<MessagesManager />} />
                 <Route path="settings" element={<SettingsManager />} />
+                <Route path="specializations" element={<SpecializationManager />} />
               </Route>
             </Routes>
           </ToastProvider>
