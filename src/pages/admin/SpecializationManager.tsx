@@ -13,14 +13,10 @@ interface Specialization {
   icon: string;
 }
 
-import { useTheme } from '../../context/ThemeContext';
-import { Moon, Sun } from 'lucide-react';
-
 const SpecializationManager = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const { theme, toggleTheme } = useTheme();
 
   const [specializations, setSpecializations] = useState<Specialization[]>([]);
   const [formData, setFormData] = useState<Partial<Specialization>>({
@@ -141,7 +137,6 @@ const SpecializationManager = () => {
         onSubmit={handleSubmit}
         isLoading={isLoading}
         submitLabel={isEditing ? 'Update Specialization' : 'Add Specialization'}
-        className="max-w-xl mx-auto"
       >
         <div>
           <label className="block mb-1 font-medium text-text-primary dark:text-text-primary-dark">Title</label>

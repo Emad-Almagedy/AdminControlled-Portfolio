@@ -5,8 +5,6 @@ import { Input } from '../../components/ui/Input';
 import FormLayout from '../../components/admin/ui/FormLayout';
 import { Button } from '../../components/ui/Button';
 import ActionButtons from '../../components/admin/ui/ActionButtons';
-import { useTheme } from '../../context/ThemeContext';
-import { Moon, Sun } from 'lucide-react';
 import EditUserModal from './EditUserModal';
 
 interface Settings {
@@ -31,8 +29,6 @@ const SettingsManager = () => {
   const [newUser, setNewUser] = useState({ username: '', email: '', password: '', role: 'user' });
   const [isLoading, setIsLoading] = useState(false);
   const [isUsersLoading, setIsUsersLoading] = useState(false);
-
-  const { theme, toggleTheme } = useTheme();
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editUserData, setEditUserData] = useState<User | null>(null);
@@ -171,15 +167,6 @@ const handleAddUser = async (e: React.FormEvent) => {
     <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold text-text-primary dark:text-text-primary-dark">Manage Settings</h1>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="rounded-full"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun size={20} className="text-current" /> : <Moon size={20} className="text-current" />}
-        </Button>
       </div>
 
       <section className="max-w-4xl mx-auto w-full">

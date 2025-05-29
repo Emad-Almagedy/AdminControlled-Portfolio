@@ -3,14 +3,12 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import SectionTitle from '../../components/ui/SectionTitle';
 import { useToast } from '../../context/ToastContext';
-import { Moon, Sun, Folder, Layers, Briefcase, BookOpen, MessageCircle, Award, User, FileText, Grid } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
+import { Folder, Layers, Briefcase, BookOpen, MessageCircle, Award, User, FileText, Grid } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 
 const Dashboard = () => {
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
 
   const [counts, setCounts] = useState({
@@ -123,15 +121,6 @@ const Dashboard = () => {
       <main className="flex-1 p-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full"
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </Button>
         </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 justify-center max-w-7xl mx-auto">
           <SectionCard title="Projects" count={counts.projects} link="/admin/projects" />

@@ -72,7 +72,7 @@ const Login = () => {
               className="absolute top-4 right-4"
               type="button"
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === 'dark' ? <Sun size={20} color="white" /> : <Moon size={20} />}
             </Button>
           </div>
           

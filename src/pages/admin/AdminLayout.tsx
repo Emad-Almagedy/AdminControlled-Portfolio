@@ -25,8 +25,8 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
-  const { theme } = useTheme();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { theme, toggleTheme } = useTheme();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin' },
@@ -52,17 +52,11 @@ const AdminLayout = () => {
       {/* Mobile Sidebar Toggle and Theme Toggle */}
       <div className="md:hidden fixed top-4 right-12 z-50 flex items-center space-x-2">
         <button
-          onClick={() => {
-            // Toggle theme
-            const newTheme = theme === 'dark' ? 'light' : 'dark';
-            document.documentElement.classList.toggle('dark', newTheme === 'dark');
-            // Ideally, use context toggleTheme function, but here we do direct DOM toggle for simplicity
-            // If context toggleTheme is needed, refactor accordingly
-          }}
+          onClick={toggleTheme}
           className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
           aria-label="Toggle theme"
         >
-          {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+          {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
         </button>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}

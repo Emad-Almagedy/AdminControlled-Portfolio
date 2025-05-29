@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
-import { useTheme } from '../../context/ThemeContext';
-import { Mail, Moon, Sun, Trash2, Eye, EyeOff } from 'lucide-react';
+import { Mail, Trash2, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 
 interface Message {
@@ -22,7 +21,6 @@ const MessagesManager = () => {
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -100,19 +98,6 @@ const MessagesManager = () => {
         <h1 className="text-2xl sm:text-3xl font-bold text-text-primary dark:text-white flex items-center gap-2">
           <Mail className="w-6 h-6" /> Manage Messages
         </h1>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="rounded-full mt-2 relative z-50 md:z-auto md:static"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? (
-            <Sun size={20} className="text-yellow-300" />
-          ) : (
-            <Moon size={20} className="text-blue-600" />
-          )}
-        </Button>
       </div>
 
       {isLoading ? (

@@ -41,8 +41,8 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, isOpen, onClose, on
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded p-6 w-full max-w-md">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded p-6 w-full max-w-md max-h-[90vh] overflow-auto">
         <h2 className="text-xl font-semibold mb-4 text-text-primary dark:text-text-primary-dark">Edit User</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

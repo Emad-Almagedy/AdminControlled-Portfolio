@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/ui/Input';
 import FormLayout from '../../components/admin/ui/FormLayout';
 import { Button } from '../../components/ui/Button';
-import { useTheme } from '../../context/ThemeContext';
-import { Moon, Sun } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 
 interface TechStack {
@@ -34,8 +32,6 @@ const TechStackManager = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -150,15 +146,6 @@ const TechStackManager = () => {
     <>
       <div className="flex justify-between items-center mb-6 text-text-primary dark:text-text-primary-dark">
         <h1 className="text-2xl font-bold">Manage Tech Stack</h1>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="rounded-full mt-2 relative z-50 md:z-auto md:static"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun size={20} className="text-current" /> : <Moon size={20} className="text-current" />}
-        </Button>
       </div>
       <FormLayout
         title=""
@@ -199,18 +186,6 @@ const TechStackManager = () => {
             <option value="tools">Tools</option>
             <option value="other">Other</option>
           </select>
-        </div>
-        <div>
-          <label className="block mb-1 font-medium text-text-primary dark:text-text-primary-dark">Proficiency</label>
-          <Input
-            name="proficiency"
-            type="number"
-            min={1}
-            max={100}
-            value={formData.proficiency || 50}
-            onChange={handleChange}
-            className=""
-          />
         </div>
       </FormLayout>
 
