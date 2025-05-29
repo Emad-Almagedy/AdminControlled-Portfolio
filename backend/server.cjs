@@ -12,7 +12,8 @@ const {
   Certificate,
   Message,
   About,
-  User
+  User,
+  Specialization
 } = require('./db.cjs');
 
 dotenv.config();
@@ -174,6 +175,7 @@ createCrudEndpoints('testimonials', Testimonial, { publicGet: true });
 createCrudEndpoints('certificates', Certificate, { publicGet: true });
 createCrudEndpoints('messages', Message);
 createCrudEndpoints('about', About);
+createCrudEndpoints('specializations', Specialization, { publicGet: true });
 
 // PATCH message read status
 app.patch('/api/messages/:id/read', authenticate, async (req, res) => {

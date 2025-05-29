@@ -116,6 +116,14 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
 });
 
+const specializationSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  icon: { type: String, required: true },
+});
+
+const Specialization = mongoose.model('Specialization', specializationSchema);
+
 // Method to set password hash
 userSchema.methods.setPassword = async function(password) {
   // console.log('setPassword called with password:', password);
@@ -143,4 +151,5 @@ module.exports = {
   Message,
   About,
   User,
+  Specialization,
 };

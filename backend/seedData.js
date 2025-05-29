@@ -58,6 +58,34 @@ const mockProjects = [
   }
 ];
 
+const mockSpecializations = [
+  {
+    title: 'Machine Learning & AI',
+    description: 'Predictive Modeling, Feature Engineering, Natural Language Processing, Generative AI, CNNs, LLMs, RAG.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+  },
+  {
+    title: 'Computer Vision',
+    description: 'Image processing, Deep learning-based generation (e.g., Stable Diffusion), OpenCV, TensorFlow, PyTorch.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+  },
+  {
+    title: 'Data Science & Visualization',
+    description: 'Advanced Analytics, Data Processing, Matplotlib, Seaborn, Plotly, Interactive Dashboards.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+  },
+  {
+    title: 'Software & Web Development',
+    description: 'Full-Stack Development, Python, JavaScript, HTML, CSS, C/C++, SQL, Visual Studio Code, PyCharm, React, Node.js.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+  },
+  {
+    title: 'Database & System Knowledge',
+    description: 'Database Management, Networking Protocols, Operating Systems.',
+    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+  }
+];
+
 const mockTechStack = [
   { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', category: 'frontend', proficiency: 90 },
   { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', category: 'frontend', proficiency: 85 },
@@ -285,6 +313,7 @@ async function seed() {
     await Certificate.insertMany(mockCertificates);
     await Message.insertMany(mockMessages);
     await User.insertMany(mockUsers);
+    await Specialization.insertMany(mockSpecializations);
 
     // Ensure About collection has only one document
     const aboutCount = await About.countDocuments();
