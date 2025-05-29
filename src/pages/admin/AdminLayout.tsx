@@ -62,88 +62,85 @@ const AdminLayout = () => {
         </button>
       </div>
 
-      {/* Sidebar */}
-      <motion.aside
-        initial={{ x: -300 }}
-        animate={{ x: isSidebarOpen ? 0 : -300 }}
-        transition={{ type: 'spring', damping: 20 }}
-        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
-          transform transition-transform md:translate-x-0 md:static md:block ${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } md:!translate-x-0`}
-      >
-        <div className="h-full px-4 py-6 overflow-y-auto">
-          <div className="flex items-center justify-between mb-8 px-2">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Admin Panel
-            </h2>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-md"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={20} color="white" /> : <Moon size={20} />}
-            </button>
-          </div>
+      {/* Flex container wrapping sidebar and main content */}
+      <div className="flex min-h-screen">
 
-          <nav className="space-y-1">
-            {menuItems.map((item) => (
+        {/* Sidebar */}
+        <motion.aside
+          initial={{ x: -300 }}
+          animate={{ x: isSidebarOpen ? 0 : -300 }}
+          transition={{ type: 'spring', damping: 20 }}
+          className={`fixed md:static top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
+            transform transition-transform md:translate-x-0 ${
+              isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+            } md:block`}
+        >
+          <div className="h-full px-4 py-6 overflow-y-auto">
+            <div className="flex items-center justify-between mb-8 px-2">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Admin Panel
+              </h2>
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-md"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? <Sun size={20} color="white" /> : <Moon size={20} />}
+              </button>
+            </div>
+
+            <nav className="space-y-1">
+              {menuItems.map((item) => (
+                <motion.button
+                  key={item.path}
+                  onClick={() => {
+                    navigate(item.path);
+                    if (window.innerWidth < 768) {
+                      setIsSidebarOpen(false);
+                    }
+                  }}
+                  className={`flex items-center w-full px-4 py-3 text-base rounded-lg transition-all duration-200 ${
+                    location.pathname === item.path
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }`}
+                  whileHover={{ x: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.icon}
+                  <span className="ml-3">{item.label}</span>
+                </motion.button>
+              ))}
+
               <motion.button
-                key={item.path}
-                onClick={() => {
-                  navigate(item.path);
-                  if (window.innerWidth < 768) {
-                    setIsSidebarOpen(false);
-                  }
-                }}
-                className={`flex items-center w-full px-4 py-3 text-base rounded-lg transition-all duration-200 ${
-                  location.pathname === item.path
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
+                onClick={handleLogout}
+                className="flex items-center w-full px-4 py-3 mt-8 text-base text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item.icon}
-                <span className="ml-3">{item.label}</span>
+                <LogOut size={20} />
+                <span className="ml-3">Logout</span>
               </motion.button>
-            ))}
 
-            <motion.button
-              onClick={handleLogout}
-              className="flex items-center w-full px-4 py-3 mt-8 text-base text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <LogOut size={20} />
-              <span className="ml-3">Logout</span>
-            </motion.button>
+              <motion.button
+                onClick={() => navigate('/')}
+                className="flex items-center w-full px-4 py-3 mt-2 text-base text-primary dark:text-primary rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-200"
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Home size={20} />
+                <span className="ml-3">Return Home</span>
+              </motion.button>
+            </nav>
+          </div>
+        </motion.aside>
 
-            <motion.button
-              onClick={() => navigate('/')}
-              className="flex items-center w-full px-4 py-3 mt-2 text-base text-primary dark:text-primary rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-200"
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Home size={20} />
-              <span className="ml-3">Return Home</span>
-            </motion.button>
-          </nav>
-        </div>
-      </motion.aside>
-
-      {/* Main Content - ensure content starts beside sidebar even on small screens */}
-      <main
-        className={`transition-all duration-300 ${isSidebarOpen ? 'ml-0' : 'ml-0'} md:ml-64`}
-        style={{ width: 'calc(100% - 16rem)', minHeight: '100vh', boxSizing: 'border-box' }}
-      >
-        <div
-          className="p-6"
-          style={{ width: '100%', maxWidth: '100%', minHeight: '100vh', boxSizing: 'border-box' }}
-        >
+        {/* Main Content */}
+        <main className="flex-grow p-6 min-h-screen">
           <Outlet />
-        </div>
-      </main>
+        </main>
+
+      </div>
 
       {/* Background Pattern */}
       <div
