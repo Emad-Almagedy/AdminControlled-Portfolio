@@ -224,14 +224,14 @@ const ExperienceManager = () => {
       )}
         <div>
           <label htmlFor="current" className="inline-flex items-center space-x-2">
-            <input
+            {/* <input
               id="current"
               name="current"
               type="checkbox"
               checked={formData.current || false}
               onChange={handleChange}
               className="h-4 w-4"
-            />
+            /> */}
             {/* <span className="text-text-primary dark:text-text-primary-dark">Current</span> */}
           </label>
         </div>
