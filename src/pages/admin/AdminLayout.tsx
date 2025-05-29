@@ -49,7 +49,7 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Mobile Sidebar Toggle */}
-      <div className="md:hidden fixed top-4 right-4 z-50">
+      <div className="md:hidden fixed top-4 right-12 z-50">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"

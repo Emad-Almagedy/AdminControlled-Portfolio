@@ -133,7 +133,7 @@ const Dashboard = () => {
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 justify-center max-w-7xl mx-auto">
           <SectionCard title="Projects" count={counts.projects} link="/admin/projects" />
           <SectionCard title="Tech Stack" count={counts.techStack} link="/admin/techstack" />
           <SectionCard title="Experience" count={counts.experience} link="/admin/experience" />
