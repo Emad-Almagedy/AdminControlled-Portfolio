@@ -26,7 +26,7 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
-  const { theme, setTheme } = useTheme(); // Ensure setTheme is used
+  const { theme, toggleTheme } = useTheme();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
@@ -46,12 +46,6 @@ const AdminLayout = () => {
   const handleLogout = async () => {
     await logout();
     navigate('/login');
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    setTheme(newTheme); // Update context
   };
 
   return (
@@ -139,8 +133,14 @@ const AdminLayout = () => {
       </motion.aside>
 
       {/* Main Content - ensure content starts beside sidebar even on small screens */}
-      <main className={`transition-all duration-300 ${isSidebarOpen ? 'ml-0' : 'ml-0'} md:ml-64`}>
-        <div className="p-6">
+      <main
+        className={`transition-all duration-300 ${isSidebarOpen ? 'ml-0' : 'ml-0'} md:ml-64`}
+        style={{ width: 'calc(100% - 16rem)', minHeight: '100vh', boxSizing: 'border-box' }}
+      >
+        <div
+          className="p-6"
+          style={{ width: '100%', maxWidth: '100%', minHeight: '100vh', boxSizing: 'border-box' }}
+        >
           <Outlet />
         </div>
       </main>
