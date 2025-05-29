@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
   Boxes,
@@ -66,10 +65,7 @@ const AdminLayout = () => {
       <div className="flex min-h-screen">
 
         {/* Sidebar */}
-        <motion.aside
-          initial={{ x: -300 }}
-          animate={{ x: isSidebarOpen ? 0 : -300 }}
-          transition={{ type: 'spring', damping: 20 }}
+        <aside
           className={`fixed md:static top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
             transform transition-transform md:block ${
               isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -91,7 +87,7 @@ const AdminLayout = () => {
 
             <nav className="space-y-1">
               {menuItems.map((item) => (
-                <motion.button
+                <button
                   key={item.path}
                   onClick={() => {
                     navigate(item.path);
@@ -104,36 +100,30 @@ const AdminLayout = () => {
                       ? 'bg-primary/10 text-primary'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   {item.icon}
                   <span className="ml-3">{item.label}</span>
-                </motion.button>
+                </button>
               ))}
 
-              <motion.button
+              <button
                 onClick={handleLogout}
                 className="flex items-center w-full px-4 py-3 mt-8 text-base text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <LogOut size={20} />
                 <span className="ml-3">Logout</span>
-              </motion.button>
+              </button>
 
-              <motion.button
+              <button
                 onClick={() => navigate('/')}
                 className="flex items-center w-full px-4 py-3 mt-2 text-base text-primary dark:text-primary rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-200"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <Home size={20} />
                 <span className="ml-3">Return Home</span>
-              </motion.button>
+              </button>
             </nav>
           </div>
-        </motion.aside>
+        </aside>
 
         {/* Main Content */}
         <main className="flex-grow p-6 min-h-screen">
