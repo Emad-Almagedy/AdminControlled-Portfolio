@@ -232,7 +232,7 @@ const ExperienceManager = () => {
               onChange={handleChange}
               className="h-4 w-4"
             />
-            <span className="text-text-primary dark:text-text-primary-dark">Current</span>
+            {/* <span className="text-text-primary dark:text-text-primary-dark">Current</span> */}
           </label>
         </div>
         <div>
