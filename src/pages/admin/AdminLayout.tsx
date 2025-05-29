@@ -26,7 +26,7 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme(); // Ensure setTheme is used
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
@@ -51,13 +51,14 @@ const AdminLayout = () => {
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    setTheme(newTheme); // Update context
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
 
-      {/* Mobile Sidebar Toggle Button */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      {/* Mobile Sidebar Toggle Button - moved to right */}
+      <div className="md:hidden fixed top-4 right-4 z-50">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
@@ -137,8 +138,8 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
-      {/* Main Content */}
-      <main className="transition-all duration-300 md:ml-64">
+      {/* Main Content - ensure content starts beside sidebar even on small screens */}
+      <main className={`transition-all duration-300 ${isSidebarOpen ? 'ml-0' : 'ml-0'} md:ml-64`}>
         <div className="p-6">
           <Outlet />
         </div>
