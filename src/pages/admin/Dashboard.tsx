@@ -85,42 +85,17 @@ const Dashboard = () => {
   return (
     <>
       <SectionTitle title="Admin Dashboard" />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Projects</h3>
-          <p className="text-3xl font-bold">{counts.projects}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Tech Stack</h3>
-          <p className="text-3xl font-bold">{counts.techStack}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Experience</h3>
-          <p className="text-3xl font-bold">{counts.experience}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Education</h3>
-          <p className="text-3xl font-bold">{counts.education}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Testimonials</h3>
-          <p className="text-3xl font-bold">{counts.testimonials}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Certificates</h3>
-          <p className="text-3xl font-bold">{counts.certificates}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Messages</h3>
-          <p className="text-3xl font-bold">{counts.messages}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">About</h3>
-          <p className="text-3xl font-bold">{counts.about}</p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-2">Specializations</h3>
-          <p className="text-3xl font-bold">{counts.specializations}</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-center">
+          {Object.entries(counts).map(([key, value]) => (
+            <div
+              key={key}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center justify-center text-center"
+            >
+              <h3 className="text-lg font-semibold mb-2 capitalize">{key.replace(/([A-Z])/g, ' $1')}</h3>
+              <p className="text-4xl font-extrabold">{value}</p>
+            </div>
+          ))}
         </div>
       </div>
     </>

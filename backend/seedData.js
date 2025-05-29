@@ -67,23 +67,19 @@ const mockSpecializations = [
   {
     title: 'Computer Vision',
     description: 'Image processing, Deep learning-based generation (e.g., Stable Diffusion), OpenCV, TensorFlow, PyTorch.',
-    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+    icon: 'https://cdn-icons-png.flaticon.com/512/8969/8969707.png'
   },
   {
     title: 'Data Science & Visualization',
     description: 'Advanced Analytics, Data Processing, Matplotlib, Seaborn, Plotly, Interactive Dashboards.',
-    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+    icon: 'https://cdn-icons-png.flaticon.com/512/1157/1157091.png'
   },
   {
     title: 'Software & Web Development',
     description: 'Full-Stack Development, Python, JavaScript, HTML, CSS, C/C++, SQL, Visual Studio Code, PyCharm, React, Node.js.',
-    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
+    icon: 'https://cdn-icons-png.flaticon.com/512/18279/18279905.png'
   },
-  {
-    title: 'Database & System Knowledge',
-    description: 'Database Management, Networking Protocols, Operating Systems.',
-    icon: 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'
-  }
+
 ];
 
 const mockTechStack = [
@@ -294,6 +290,8 @@ async function deleteAllExceptAbout() {
   await Certificate.deleteMany({});
   await Message.deleteMany({});
   await User.deleteMany({});
+  await Specialization.deleteMany({});
+
 }
 
 async function seed() {
