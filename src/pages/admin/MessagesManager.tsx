@@ -104,7 +104,7 @@ const MessagesManager = () => {
           variant="ghost"
           size="icon"
           onClick={toggleTheme}
-          className="rounded-full"
+          className="rounded-full mt-2"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (

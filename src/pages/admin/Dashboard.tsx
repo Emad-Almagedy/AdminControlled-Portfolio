@@ -102,10 +102,10 @@ const Dashboard = () => {
   const SectionCard = ({ title, count, link }: { title: string; count: number; link: string }) => {
     const navigate = useNavigate();
     return (
-      <div
-        className="bg-background dark:bg-background-dark rounded-lg shadow p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 cursor-pointer mx-auto max-w-xs"
-        onClick={() => navigate(link)}
-      >
+    <div
+      className="bg-background dark:bg-background-dark rounded-lg shadow p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 cursor-pointer w-full sm:w-64"
+      onClick={() => navigate(link)}
+    >
         <div className="flex items-center space-x-4">
           <div>{iconMap[title]}</div>
           <h2 className="text-xl font-semibold text-text-primary dark:text-text-primary-dark">{title}</h2>

@@ -154,7 +154,7 @@ const TestimonialsManager = () => {
           variant="ghost"
           size="icon"
           onClick={toggleTheme}
-          className="rounded-full"
+          className="rounded-full mt-2"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? <Sun size={20} className="text-current" /> : <Moon size={20} className="text-current" />}

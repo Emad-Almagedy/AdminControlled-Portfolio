@@ -154,7 +154,7 @@ const CertificatesManager = () => {
         <button
           onClick={toggleTheme}
           aria-label="Toggle theme"
-          className="rounded-full p-2 bg-gray-200 dark:bg-gray-700"
+          className="rounded-full p-2 bg-gray-200 dark:bg-gray-700 mt-2"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </button>

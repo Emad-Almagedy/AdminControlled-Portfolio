@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { Lock } from 'lucide-react';
+import { Lock, Moon, Sun } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 import { motion } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +15,7 @@ const Login = () => {
   const { login } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ const Login = () => {
         transition={{ duration: 0.5 }}
         className="max-w-md w-full mx-4"
       >
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl backdrop-blur-lg bg-opacity-80 dark:bg-opacity-80">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl backdrop-blur-lg bg-opacity-80 dark:bg-opacity-80 relative">
           <div className="text-center mb-8">
             <motion.div 
               initial={{ scale: 0 }}
@@ -62,6 +64,14 @@ const Login = () => {
             <p className="mt-2 text-gray-600 dark:text-gray-400">
               Sign in to access your dashboard
             </p>
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="absolute top-0 right-0 rounded-full p-2 bg-gray-200 dark:bg-gray-700 mt-2"
+              type="button"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-6">
