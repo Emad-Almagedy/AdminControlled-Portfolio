@@ -151,13 +151,6 @@ const CertificatesManager = () => {
     <>
       <div className="flex justify-between items-center mb-6 text-text-primary dark:text-text-primary-dark">
         <h1 className="text-2xl font-bold">Manage Certificates</h1>
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          className="rounded-full p-2 bg-gray-200 dark:bg-gray-700 mt-2"
-        >
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
       </div>
       <FormLayout
         title=""

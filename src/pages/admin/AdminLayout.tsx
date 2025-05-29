@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
+import { Sun, Moon } from 'lucide-react';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -48,8 +49,21 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Mobile Sidebar Toggle */}
-      <div className="md:hidden fixed top-4 right-12 z-50">
+      {/* Mobile Sidebar Toggle and Theme Toggle */}
+      <div className="md:hidden fixed top-4 right-12 z-50 flex items-center space-x-2">
+        <button
+          onClick={() => {
+            // Toggle theme
+            const newTheme = theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.classList.toggle('dark', newTheme === 'dark');
+            // Ideally, use context toggleTheme function, but here we do direct DOM toggle for simplicity
+            // If context toggleTheme is needed, refactor accordingly
+          }}
+          className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+        </button>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
@@ -79,15 +93,20 @@ const AdminLayout = () => {
             {menuItems.map((item) => (
               <motion.button
                 key={item.path}
-                onClick={() => navigate(item.path)}
-                className={`flex items-center w-full px-4 py-3 text-base rounded-lg transition-all duration-200 ${
-                  location.pathname === item.path
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              onClick={() => {
+                navigate(item.path);
+                if (window.innerWidth < 768) {
+                  setIsSidebarOpen(false);
+                }
+              }}
+              className={`flex items-center w-full px-4 py-3 text-base rounded-lg transition-all duration-200 ${
+                location.pathname === item.path
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+              }`}
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.95 }}
+            >
                 {item.icon}
                 <span className="ml-3">{item.label}</span>
               </motion.button>

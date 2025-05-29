@@ -64,14 +64,16 @@ const Login = () => {
             <p className="mt-2 text-gray-600 dark:text-gray-400">
               Sign in to access your dashboard
             </p>
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="absolute top-0 right-0 rounded-full p-2 bg-gray-200 dark:bg-gray-700 mt-2"
+              className="absolute top-4 right-4"
               type="button"
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            </Button>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-6">

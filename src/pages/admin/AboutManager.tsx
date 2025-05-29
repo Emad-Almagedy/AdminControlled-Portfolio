@@ -50,8 +50,6 @@ const AboutManager = () => {
   const [aboutId, setAboutId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { theme, toggleTheme } = useTheme();
-
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/auth/login');
@@ -146,15 +144,6 @@ const AboutManager = () => {
     <>
       <div className="flex justify-between items-center mb-6 text-text-primary dark:text-text-primary-dark">
         <h1 className="text-2xl font-bold">Manage About Section</h1>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="rounded-full mt-2"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun size={20} className="text-current" /> : <Moon size={20} className="text-current" />}
-        </Button>
       </div>
       <FormLayout
         title=""

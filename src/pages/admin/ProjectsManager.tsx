@@ -40,9 +40,8 @@ const ProjectsManager = () => {
 
   // Helper to get id for API calls
   const getId = (project: Project) => project._id;
-  const [error, setError] = useState<string | null>(null);
 
-  const { theme, toggleTheme } = useTheme();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -164,15 +163,6 @@ const ProjectsManager = () => {
     <>
       <div className="flex justify-between items-center mb-6 text-text-primary dark:text-text-primary-dark">
         <h1 className="text-2xl font-bold">Manage Projects</h1>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="rounded-full mt-2"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun size={20} className="text-current" /> : <Moon size={20} className="text-current" />}
-        </Button>
       </div>
       <FormLayout
         title=""
