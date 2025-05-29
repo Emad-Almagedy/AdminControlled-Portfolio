@@ -26,8 +26,8 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
-  const { theme, toggleTheme } = useTheme(); // assumes a working toggleTheme
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // for mobile only
 
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin' },
@@ -52,19 +52,23 @@ const AdminLayout = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* Sidebar */}
       <motion.aside
-        initial={{ x: -300 }}
-        animate={{ x: isSidebarOpen ? 0 : -300 }}
+        initial={false}
+        animate={{ x: isSidebarOpen ? 0 : -256 }} // 256px = w-64
         transition={{ type: 'spring', damping: 20 }}
-        className={`fixed md:static top-0 left-0 z-40 w-64 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
+        className={`
+          fixed md:static z-50 top-0 left-0 w-64 h-full
+          bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700
+          md:translate-x-0
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:flex flex-col
+        `}
       >
         <div className="h-full px-4 py-6 overflow-y-auto">
           <div className="flex items-center justify-between mb-6 px-2">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Admin Panel
             </h2>
-
-            {/* Theme Toggle - Desktop Only */}
+            {/* Theme Toggle - desktop */}
             <button
               onClick={toggleTheme}
               className="hidden md:flex p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
@@ -118,33 +122,24 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
-      {/* Content Area */}
-      <div className="flex-1 flex flex-col">
-        {/* Mobile Top Bar */}
-        <div className="md:hidden flex justify-end items-center p-4 space-x-2">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow"
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun size={24} color="white" /> : <Moon size={24} />}
+      {/* Content */}
+      <div className="flex-1 flex flex-col min-h-screen ml-0 md:ml-64">
+        {/* Mobile top bar */}
+        <div className="md:hidden flex justify-between items-center p-4 bg-white dark:bg-gray-900 shadow-sm z-40">
+          <button onClick={toggleTheme} className="p-2 rounded bg-gray-200 dark:bg-gray-700">
+            {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
           </button>
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow"
-            aria-label="Toggle sidebar"
-          >
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 rounded bg-gray-200 dark:bg-gray-700">
             {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Page Content */}
         <main className="flex-1 p-6">
           <Outlet />
         </main>
       </div>
 
-      {/* Background Pattern */}
+      {/* Background pattern */}
       <div
         className="fixed inset-0 pointer-events-none opacity-5"
         style={{
