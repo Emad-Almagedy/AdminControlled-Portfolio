@@ -1,5 +1,6 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
+import { motion } from 'framer-motion-3d';
 import { useTheme } from '../../context/ThemeContext';
 import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
@@ -92,21 +93,6 @@ const LightModeBackground = () => {
 
 const Scene = () => {
   const { theme } = useTheme();
-  const { camera } = useThree();
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useFrame(() => {
-    // Adjust camera position or rotation based on scrollY for parallax effect
-    camera.position.y = THREE.MathUtils.lerp(camera.position.y, scrollY * 0.01, 0.1);
-  });
 
   return (
     <>
