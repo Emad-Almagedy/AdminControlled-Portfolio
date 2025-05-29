@@ -164,7 +164,7 @@ const handleAddUser = async (e: React.FormEvent) => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 pt-16 md:pt-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold text-text-primary dark:text-text-primary-dark">Manage Settings</h1>
       </div>

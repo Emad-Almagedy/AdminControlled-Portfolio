@@ -93,7 +93,7 @@ const MessagesManager = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 pt-16 md:pt-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-text-primary dark:text-white flex items-center gap-2">
           <Mail className="w-6 h-6" /> Manage Messages

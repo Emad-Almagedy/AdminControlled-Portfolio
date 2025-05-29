@@ -51,7 +51,7 @@ const SpecializationSection = () => {
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                  <img src={spec.icon} alt={spec.title} className="w-8 h-8" />
+                  <img src={spec.icon} alt={spec.title} className="w-8 h-8 object-contain" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">{spec.title}</h3>

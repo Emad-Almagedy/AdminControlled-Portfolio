@@ -149,7 +149,7 @@ const CertificatesManager = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6 text-text-primary dark:text-text-primary-dark">
+      <div className="flex justify-between items-center mb-6 pt-16 md:pt-0 text-text-primary dark:text-text-primary-dark">
         <h1 className="text-2xl font-bold">Manage Certificates</h1>
       </div>
       <FormLayout
