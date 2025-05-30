@@ -16,12 +16,6 @@ Live Preview 👉 [admin-controlled-portfolio.vercel.app](https://admin-controll
 
 ---
 
-## 📸 Demo
-
-![Screenshot 2025-05-27 223835](https://github.com/user-attachments/assets/e86f20ff-af6d-48b6-bbbb-80daf2bb7d6c)
-
----
-
 ## 🔐 Admin Dashboard Access
 
 Access the admin dashboard to manage content in real-time:
