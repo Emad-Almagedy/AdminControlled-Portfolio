@@ -34,7 +34,5 @@ Access the admin dashboard to manage content in real-time:
 ![TailwindCSS](https://img.shields.io/badge/UI-TailwindCSS-38b2ac?logo=tailwind-css)
 ![Framer Motion](https://img.shields.io/badge/Animation-Framer--Motion-EC5286?logo=framer)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Emad-Almagedy&repo=AdminControlled-Portfolio&layout=compact&theme=default)
-
 
 
