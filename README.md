@@ -18,10 +18,7 @@ Live Preview 👉 [admin-controlled-portfolio.vercel.app](https://admin-controll
 
 ## 🔐 Admin Dashboard Access
 
-Access the admin dashboard to manage content in real-time:
-**Demo Credentials:**
-- 📧 Email: `user1@example.com`
-- 🔑 Password: `123`
+Access the admin dashboard to manage content in real-time
 
 ---
 
