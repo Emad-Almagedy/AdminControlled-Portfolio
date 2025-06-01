@@ -1,0 +1,31 @@
+Excited to share the tech stack behind my latest project! 🚀
+
+Frontend:
+- Built with React 18 and TypeScript for a robust and scalable UI.
+- React Router DOM powers seamless client-side routing.
+- Leveraged React Three Fiber and Drei for stunning 3D visuals.
+- Framer Motion adds smooth animations and delightful interactions.
+- Styled with Tailwind CSS, a utility-first CSS framework for rapid UI development.
+- Used Lucide React for crisp, customizable icons.
+- React Type Animation brings dynamic typing effects.
+- Vite serves as the fast and modern build tool, enhancing development speed.
+- PostCSS and Autoprefixer optimize CSS for cross-browser compatibility.
+
+Backend:
+- Node.js with Express.js provides a powerful RESTful API server.
+- MongoDB with Mongoose ODM manages data efficiently.
+- JSON Web Tokens (JWT) handle secure authentication and authorization.
+- Bcrypt ensures password security with hashing.
+- CORS middleware enables safe cross-origin requests.
+- Dotenv manages environment variables securely.
+- Morgan logs HTTP requests for monitoring and debugging.
+- Supabase JS client integrates additional backend services.
+
+Development Tools:
+- TypeScript enforces type safety across the stack.
+- ESLint and Prettier maintain code quality and consistency.
+- Vite accelerates development with fast builds and hot module replacement.
+
+This combination of modern technologies allowed me to build a performant, scalable, and visually engaging application. Looking forward to sharing more updates soon!
+
+#React #TypeScript #NodeJS #Express #MongoDB #TailwindCSS #Vite #WebDevelopment #FullStack
