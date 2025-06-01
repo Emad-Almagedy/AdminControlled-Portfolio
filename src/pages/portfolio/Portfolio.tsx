@@ -133,11 +133,29 @@ const Portfolio = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-col sm:flex-row justify-center gap-4 mb-8"
           >
-            <Button className="rounded-full group transition-all duration-300 transform hover:scale-105">
+            <Button
+              className="rounded-full group transition-all duration-300 transform hover:scale-105"
+              onClick={() => {
+                if (about?.resumeUrl) {
+                  window.open(about.resumeUrl, '_blank');
+                } else {
+                  alert('CV not available');
+                }
+              }}
+            >
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
               Download CV
             </Button>
-            <Button variant="secondary" className="rounded-full group transition-all duration-300 transform hover:scale-105">
+            <Button
+              variant="secondary"
+              className="rounded-full group transition-all duration-300 transform hover:scale-105"
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               <Mail className="mr-2 h-4 w-4 group-hover:animate-pulse" />
               Contact Me
             </Button>
